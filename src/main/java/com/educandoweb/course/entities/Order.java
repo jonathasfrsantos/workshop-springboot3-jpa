@@ -1,8 +1,11 @@
 package com.educandoweb.course.entities;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,7 +24,8 @@ public class Order implements Serializable{
 	@GeneratedValue(strategy =  GenerationType.IDENTITY)
 	private Long id;
 	
-	private LocalDateTime moment;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
+	private Instant moment;
 	
 	@ManyToOne                    // Um cliente tem muitos pedidos
 	@JoinColumn(name="client_id") // dar nome a chave estrangeira
@@ -31,7 +35,7 @@ public class Order implements Serializable{
 		
 	}
 
-	public Order(Long id, LocalDateTime moment, User client) {
+	public Order(Long id, Instant moment, User client) {
 		this.id = id;
 		this.moment = moment;
 		this.client = client;
@@ -45,11 +49,11 @@ public class Order implements Serializable{
 		this.id = id;
 	}
 
-	public LocalDateTime getMoment() {
+	public Instant getMoment() {
 		return moment;
 	}
 
-	public void setMoment(LocalDateTime moment) {
+	public void setMoment(Instant moment) {
 		this.moment = moment;
 	}
 
