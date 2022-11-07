@@ -67,6 +67,10 @@ public class OrderItem implements Serializable{
 		this.price = price;
 	}
 	
+	public Double getSubTotal() { // na plataforma Java EE o que vale é o get
+		return price * quantity;
+	}
+	
 	
 	
 
