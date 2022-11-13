@@ -2,14 +2,16 @@ package com.educandoweb.course.resources.exceptions;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 public class StandardError implements Serializable {
  static final long serialVersionUID = 1L;
- 
+ 	
+ 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant timestamp;
 	private Integer status;
 	private String error;
